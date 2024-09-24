@@ -1,0 +1,61 @@
+﻿@model Application.ViewModel.SeriesViewModel
+
+@{
+    ViewData["Title"] = "Crear Nueva Serie";
+}
+
+<div class="container mt-4">
+    <h2 class="text-white" style="font-family: 'Poppins', sans-serif; font-size: 3rem; font-weight: 600; text-align: center;">
+        Crear Nueva Serie
+    </h2>
+
+    <form asp-action="Create" method="post" class="mt-4 p-4 bg-dark shadow-lg rounded-3">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label text-white"></label>
+            <input asp-for="Name" class="form-control" required />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProducerId" class="control-label text-white"></label>
+            <select asp-for="ProducerId" class="form-control" asp-items="Model.Producers" required>
+                <option value="">Seleccione un Productor</option>
+            </select>
+            <span asp-validation-for="ProducerId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PrimaryGenreId" class="control-label text-white"></label>
+            <select asp-for="PrimaryGenreId" class="form-control" asp-items="Model.PrimaryGenres" required>
+                <option value="">Seleccione un Género Primario</option>
+            </select>
+            <span asp-validation-for="PrimaryGenreId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SecondaryGenreId" class="control-label text-white"></label>
+            <select asp-for="SecondaryGenreId" class="form-control" asp-items="Model.SecondaryGenres">
+                <option value="">Seleccione un Género Secundario</option>
+            </select>
+            <span asp-validation-for="SecondaryGenreId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="VideoLink" class="control-label text-white"></label>
+            <input asp-for="VideoLink" class="form-control" />
+            <span asp-validation-for="VideoLink" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ImgLink" class="control-label text-white"></label>
+            <input asp-for="ImgLink" class="form-control" />
+            <span asp-validation-for="ImgLink" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <input type="submit" value="Crear" class="btn btn-primary btn-lg rounded-pill" />
+            <a asp-action="Index" class="btn btn-secondary btn-lg rounded-pill">Volver a la Lista</a>
+        </div>
+    </form>
+</div>
+

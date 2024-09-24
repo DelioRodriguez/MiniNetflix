@@ -1,0 +1,99 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MiniNetflix</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MiniNetflix.styles.css" asp-append-version="true" />
+
+    <!-- Enlace a Google Fonts para Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #141414; /* Fondo oscuro */
+            color: white; /* Texto blanco */
+            font-family: 'Poppins', sans-serif; /* Cambiar tipo de letra a Poppins */
+        }
+
+        .navbar {
+            background-color: #e50914; /* Rojo Netflix */
+            border-bottom: 1px solid #333; /* Línea inferior */
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important; /* Texto blanco en la navbar */
+        }
+
+            .nav-link:hover {
+                color: #b3b3b3 !important; /* Color gris al pasar el mouse */
+            }
+
+        footer {
+            background-color: #333; /* Fondo del pie de página */
+            color: #b3b3b3; /* Texto gris */
+        }
+
+            footer a {
+                color: #e50914; /* Enlaces rojos */
+            }
+
+                footer a:hover {
+                    color: white; /* Enlaces blancos al pasar el mouse */
+                }
+
+        /* Cambiar tipo de letra en el header */
+        header {
+            font-family: 'Poppins', sans-serif; /* Aplicar la fuente a todo el header */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MiniNetflix</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Genre" asp-action="Index">Genero</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Producer" asp-action="Index">Producer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Series" asp-action="Index">Series</a>
+                        </li>
+                        <!-- Botón de Privacy eliminado -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - MiniNetflix
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

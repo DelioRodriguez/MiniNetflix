@@ -1,0 +1,26 @@
+﻿@model Application.ViewModel.GenreViewModel
+
+@{
+    ViewData["Title"] = "Editar Género";
+}
+
+<div class="container mt-4">
+    <h2 class="text-white" style="font-family: 'Poppins', sans-serif; font-size: 3rem; font-weight: 600; text-align: center;">
+        Editar Género
+    </h2>
+
+    <form asp-action="Edit" method="post" class="mt-4 p-4 bg-dark shadow-lg rounded-3">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="Name" class="text-white"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary btn-lg rounded-pill">Guardar</button>
+            <a asp-action="Index" class="btn btn-secondary btn-lg rounded-pill">Volver al Listado</a>
+        </div>
+    </form>
+</div>

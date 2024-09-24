@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Application.ViewModel.SeriesViewModel>
+
+<div class="container mt-4" style="background-color: #141414; color: #FFFFFF;">
+    <h2 class="text-center mb-5" style="font-family: 'Poppins', sans-serif; font-size: 4rem; font-weight: 700; letter-spacing: 3px; color: #E50914; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);">
+        <a href="/" style="text-decoration: none; color: #E50914;">MiniNetflix</a>
+    </h2>
+
+    <form method="get" class="mb-5">
+        <div class="row justify-content-center align-items-center">
+            <!-- Barra de búsqueda -->
+            <div class="col-lg-6 col-md-8 col-sm-10 mb-3">
+                <div class="input-group" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4); border-radius: 50px;">
+                    <input type="text" name="searchString" class="form-control" placeholder="Buscar por nombre..." style="background-color: #2C2C2C; border: none; color: #FFFFFF; padding: 1rem; border-radius: 50px 0 0 50px;" />
+                    <button class="btn" type="submit" style="background-color: #E50914; color: #FFFFFF; border-radius: 0 50px 50px 0; padding: 1rem 1.5rem; text-transform: uppercase;">
+                        Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selectores de Productora y Género -->
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <select name="producerId" class="form-select" style="background-color: #2C2C2C; color: #FFFFFF; border: none; padding: 0.8rem; border-radius: 50px;">
+                    <option value="">Selecciona una productora</option>
+                    @foreach (var producer in ViewBag.Producers)
+                    {
+                        <option value="@producer.Value">@producer.Text</option>
+                    }
+                    }
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <select name="genreId" class="form-select" style="background-color: #2C2C2C; color: #FFFFFF; border: none; padding: 0.8rem; border-radius: 50px;">
+                    <option value="">Selecciona un género</option>
+                    @foreach (var genre in ViewBag.Genres)
+                    {
+                        <option value="@genre.Value">@genre.Text</option>
+                    }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <!-- Botón de Filtrar -->
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <button type="submit" class="btn" style="background-color: #E50914; color: #FFFFFF; border-radius: 50px; padding: 0.8rem 2rem; font-size: 1.2rem; text-transform: uppercase;">
+                    Filtrar
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        @foreach (var series in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card" style="background-color: #333333; border: none; height: 100%; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
+                    <div class="position-relative">
+                        <img src="@series.ImgLink" class="card-img-top" alt="Portada de @series.Name" style="cursor: pointer; width: 100%; height: 300px; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';" onclick="showVideo('@series.Id');" />
+                    </div>
+                    <div class="card-body" style="color: #FFFFFF;">
+                        <h5 class="card-title mb-2" style="font-size: 1.5rem; color: #E50914;">@series.Name</h5>
+                        <p class="card-text mb-2" style="font-size: 1rem; color: #B3B3B3;">
+                            Productora:
+                            <span class="badge bg-danger" style="cursor: pointer;" onclick="filterByProducer('@series.ProducerId')">@series.ProducerName</span>
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #B3B3B3;">Género:</p>
+                        <div class="d-flex mb-2">
+                            <span class="badge bg-danger me-2" style="cursor: pointer;" onclick="filterByGenre('@series.PrimaryGenreId')">@series.PrimaryGenreName</span>
+                            @if (!string.IsNullOrEmpty(series.SecondaryGenreName))
+                            {
+                                <span class="badge bg-danger" style="cursor: pointer;" onclick="filterByGenre('@series.SecondaryGenreId')">@series.SecondaryGenreName</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <script>
+        function filterByProducer(producerId) {
+            window.location.href = `?producerId=${producerId}`;
+        }
+
+        function filterByGenre(genreId) {
+            window.location.href = `?genreId=${genreId}`;
+        }
+
+        function showVideo(id) {
+            window.location.href = `/Home/PlayVideo/${id}`;
+        }
+    </script>
+</div>
