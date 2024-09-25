@@ -1,6 +1,5 @@
 ﻿using Application.IServices;
 using Application.ViewModel;
-using Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MiniNetflix.Controllers
@@ -20,16 +19,6 @@ namespace MiniNetflix.Controllers
          return View(genres);
      }
 
-     public IActionResult Detail(int id)
-     {
-         var genre = _genresService.GetById(id);
-         if (genre == null)
-         {
-             return NotFound();
-
-         }
-         return View(genre);
-     }
 
      public IActionResult Create()
      {
@@ -88,9 +77,9 @@ namespace MiniNetflix.Controllers
         
          if (_genresService.HasSeries(id))
          {
-      
-             ModelState.AddModelError("", "No se puede eliminar el género porque tiene series asociadas.");
-             return RedirectToAction(nameof(Index));
+
+                TempData["ErrorMessage"] = "No puedes eliminar un genero que contiene series.";
+                return RedirectToAction(nameof(Index));
          }
 
        

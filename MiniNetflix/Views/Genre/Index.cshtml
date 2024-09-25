@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Application.ViewModel.GenreViewModel>
 
 @{
-    ViewData["Title"] = "Géneros";
+    ViewData["Title"] = "Generos";
 }
 
 <div class="container mt-4">
@@ -29,7 +29,6 @@
                         <div class="card-body d-flex flex-column justify-content-between">
                             <h5 class="card-title" style="font-size: 1.5rem;">@genre.Name</h5>
                             <div class="d-flex justify-content-between mt-3">
-                                <a asp-action="Detail" asp-route-id="@genre.Id" class="btn btn-info rounded-pill px-3">Detalles</a>
                                 <a asp-action="Edit" asp-route-id="@genre.Id" class="btn btn-warning rounded-pill px-3">Editar</a>
                                 <button type="button" class="btn btn-danger rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#deleteModal-@genre.Id">
                                     Eliminar
@@ -39,16 +38,16 @@
                     </div>
                 </div>
 
-                <!-- Delete Modal -->
-                <div class="modal fade" id="deleteModal-@genre.Id" tabindex="-1" aria-labelledby="deleteModalLabel-@genre.Id" aria-hidden="true">
+              
+                <div class="modal fade" id="deleteModal-@genre.Id" tabindex="0" aria-labelledby="deleteModalLabel-@genre.Id" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content bg-dark text-white">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModalLabel-@genre.Id">Confirmar Eliminación</h5>
+                                <h5 class="modal-title" id="deleteModalLabel-@genre.Id">Confirmar Eliminacion</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                             </div>
                             <div class="modal-body">
-                                ¿Estás seguro de que deseas eliminar este género?
+                                ¿Estás seguro de que deseas eliminar este genero?
                             </div>
                             <div class="modal-footer">
                                 <form asp-action="Delete" method="post">

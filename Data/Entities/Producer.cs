@@ -4,5 +4,5 @@ namespace Data.Entities;
 
 public class Producer : EntityBase
 {
-    public ICollection<Series>? Series { get; set; }
+    public ICollection<Series?> Series { get; set; } = null!;
 }

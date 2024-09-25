@@ -54,12 +54,15 @@ public class GenreService : IGenresService
 
     public void Update(GenreViewModel genreViewModel)
     {
-        var genre = new Genre
+        if (genreViewModel.Id != null)
         {
-            Id = genreViewModel.Id.Value,
-            Name = genreViewModel.Name
-        };
-        _genresRepository.Update(genre);
+            var genre = new Genre
+            {
+                Id = genreViewModel.Id.Value,
+                Name = genreViewModel.Name
+            };
+            _genresRepository.Update(genre);
+        }
     }
 
     public void Delete(int id)

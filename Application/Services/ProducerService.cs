@@ -53,12 +53,15 @@ public class ProducerService : IProducerService
 
     public void Update(ProducerViewModel producerViewModel)
     {
-        var prod = new Producer
+        if (producerViewModel.Id != null)
         {
-            Id = producerViewModel.Id.Value,
-            Name = producerViewModel.Name
-        };
-        _producerRepository.Update(prod);
+            var prod = new Producer
+            {
+                Id = producerViewModel.Id.Value,
+                Name = producerViewModel.Name
+            };
+            _producerRepository.Update(prod);
+        }
     }
 
     public void Delete(int id)

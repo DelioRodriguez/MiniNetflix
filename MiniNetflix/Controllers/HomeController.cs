@@ -25,7 +25,7 @@ public class HomeController : Controller
       
         if (!string.IsNullOrEmpty(searchString))
         {
-            series = series.Where(s => s.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase));
+            series = series.Where(s => s.Name != null && s.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase));
         }
         if (producerId.HasValue)
         {

@@ -11,6 +11,5 @@ public interface IGenresService
     void Add(GenreViewModel genreViewModel);
     void Update(GenreViewModel genreViewModel);
     void Delete(int id);
-
     bool HasSeries(int genreId);
 }

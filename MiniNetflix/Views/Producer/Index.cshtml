@@ -12,6 +12,13 @@
         <a asp-action="Create" class="btn btn-primary btn-lg shadow-lg rounded-pill px-4">Crear Nuevo Productor</a>
     </div>
 
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger mt-3" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
     @if (Model.Any())
     {
         <div class="row">
@@ -22,10 +29,8 @@
                         <div class="card-body d-flex flex-column justify-content-between">
                             <h5 class="card-title" style="font-size: 1.5rem;">@producer.Name</h5>
                             <div class="d-flex justify-content-between mt-3">
-                                <a asp-action="Details" asp-route-id="@producer.Id" class="btn btn-info rounded-pill px-3">Detalles</a>
                                 <a asp-action="Edit" asp-route-id="@producer.Id" class="btn btn-warning rounded-pill px-3">Editar</a>
 
-                                <!-- Botón para abrir el modal -->
                                 <button type="button" class="btn btn-danger rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#deleteModal-@producer.Id">
                                     Eliminar
                                 </button>
@@ -34,7 +39,6 @@
                     </div>
                 </div>
 
-                <!-- Modal de confirmación de eliminación para cada productor -->
                 <div class="modal fade" id="deleteModal-@producer.Id" tabindex="-1" aria-labelledby="deleteModalLabel-@producer.Id" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content bg-dark text-white">

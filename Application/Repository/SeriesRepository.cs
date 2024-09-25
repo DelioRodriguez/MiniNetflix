@@ -32,7 +32,7 @@ public class SeriesRepository : ISeriesRepository
             .FirstOrDefault(s => s.Id == id);
     }
 
-    public void Add(Series entity)
+    public void Add(Series? entity)
     {
         _context.Series.Add(entity);
         SaveChanges();
@@ -44,7 +44,7 @@ public class SeriesRepository : ISeriesRepository
         SaveChanges();
     }
 
-    public void Delete(Series entity)
+    public void Delete(Series? entity)
     {
       _context.Series.Remove(entity);
       SaveChanges();

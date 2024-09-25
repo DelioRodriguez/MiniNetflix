@@ -1,5 +1,5 @@
 ﻿using Application.IServices;
-using Application.Services;
+
 using Application.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -25,15 +25,6 @@ namespace MiniNetflix.Controllers
             return View(series);
         }
 
-        public IActionResult Details(int id)
-        {
-            var series = _seriesService.GetById(id);
-            if (series == null)
-            {
-                return NotFound();
-            }
-            return View(series);
-        }
 
         public IActionResult Create()
         {
@@ -102,16 +93,6 @@ namespace MiniNetflix.Controllers
 
             _seriesService.Update(seriesViewModel);
             return RedirectToAction(nameof(Index));
-        }
-
-        public IActionResult Delete(int id)
-        {
-            var series = _seriesService.GetById(id);
-            if (series == null)
-            {
-                return NotFound();
-            }
-            return View(series);
         }
 
         [HttpPost, ActionName("Delete")]

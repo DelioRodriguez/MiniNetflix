@@ -19,15 +19,6 @@ namespace MiniNetflix.Controllers
             return View(producers);
         }
 
-        public IActionResult Details(int id)
-        {
-            var producer = _producerService.GetById(id);
-            if (producer == null)
-            {
-                return NotFound();
-            }
-            return View(producer);
-        }
 
         public IActionResult Create()
         {
@@ -70,15 +61,6 @@ namespace MiniNetflix.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int id)
-        {
-            var producer = _producerService.GetById(id);
-            if (producer == null)
-            {
-                return NotFound();
-            }
-            return View(producer);
-        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -86,11 +68,14 @@ namespace MiniNetflix.Controllers
         {
             if (_producerService.HasSeries(id))
             {
+                
+                TempData["ErrorMessage"] = "No puedes eliminar un productor que contiene series.";
                 return RedirectToAction(nameof(Index));
             }
             _producerService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
+
 
 
     }

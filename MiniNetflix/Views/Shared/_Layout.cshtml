@@ -12,45 +12,45 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MiniNetflix.styles.css" asp-append-version="true" />
 
-    <!-- Enlace a Google Fonts para Poppins -->
+ 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
-            background-color: #141414; /* Fondo oscuro */
-            color: white; /* Texto blanco */
-            font-family: 'Poppins', sans-serif; /* Cambiar tipo de letra a Poppins */
+            background-color: #141414; 
+            color: white; 
+            font-family: 'Poppins', sans-serif; 
         }
 
         .navbar {
-            background-color: #e50914; /* Rojo Netflix */
-            border-bottom: 1px solid #333; /* Línea inferior */
+            background-color: #e50914; 
+            border-bottom: 1px solid #333; 
         }
 
         .navbar-brand, .nav-link {
-            color: white !important; /* Texto blanco en la navbar */
+            color: white !important;
         }
 
             .nav-link:hover {
-                color: #b3b3b3 !important; /* Color gris al pasar el mouse */
+                color: #b3b3b3 !important; 
             }
 
         footer {
-            background-color: #333; /* Fondo del pie de página */
-            color: #b3b3b3; /* Texto gris */
+            background-color: #333; 
+            color: #b3b3b3; 
         }
 
             footer a {
-                color: #e50914; /* Enlaces rojos */
+                color: #e50914; 
             }
 
                 footer a:hover {
-                    color: white; /* Enlaces blancos al pasar el mouse */
+                    color: white; 
                 }
 
-        /* Cambiar tipo de letra en el header */
+     
         header {
-            font-family: 'Poppins', sans-serif; /* Aplicar la fuente a todo el header */
+            font-family: 'Poppins', sans-serif; 
         }
     </style>
 </head>
@@ -66,15 +66,15 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Genre" asp-action="Index">Genero</a>
+                            <a class="nav-link" asp-area="" asp-controller="Genre" asp-action="Index">Mant. Genero</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Producer" asp-action="Index">Producer</a>
+                            <a class="nav-link" asp-area="" asp-controller="Producer" asp-action="Index">Mant. Productores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Series" asp-action="Index">Series</a>
+                            <a class="nav-link" asp-area="" asp-controller="Series" asp-action="Index">Mant. Series</a>
                         </li>
-                        <!-- Botón de Privacy eliminado -->
+                       
                     </ul>
                 </div>
             </div>

@@ -3,8 +3,6 @@ using Application.IServices;
 using Application.ViewModel;
 using Data.Context;
 using Data.Entities;
-using Microsoft.EntityFrameworkCore;
-
 namespace Application.Services;
 
 public class SeriesService : ISeriesService
@@ -66,26 +64,29 @@ public class SeriesService : ISeriesService
         };
         _seriesRepository.Add(s);
     }
-    public Series GetSeriesById(int id)
+    public Series? GetSeriesById(int id)
     {
-        return _context.Series.FirstOrDefault(s => s.Id == id);
+        return _context.Series.FirstOrDefault(s => s != null && s.Id == id);
     }
 
 
     public void Update(SeriesViewModel seriesViewModel)
     {
-        var s = new Series
+        if (seriesViewModel.Id != null)
         {
-            Id = seriesViewModel.Id.Value,
-            Name = seriesViewModel.Name,
-            ProducerId = seriesViewModel.ProducerId,
-            PrimaryGenreId = seriesViewModel.PrimaryGenreId,
-            SecondaryGenreId = seriesViewModel.SecondaryGenreId,
-            VideoLink = seriesViewModel.VideoLink,
-            ImgLink = seriesViewModel.ImgLink,
+            var s = new Series
+            {
+                Id = seriesViewModel.Id.Value,
+                Name = seriesViewModel.Name,
+                ProducerId = seriesViewModel.ProducerId,
+                PrimaryGenreId = seriesViewModel.PrimaryGenreId,
+                SecondaryGenreId = seriesViewModel.SecondaryGenreId,
+                VideoLink = seriesViewModel.VideoLink,
+                ImgLink = seriesViewModel.ImgLink,
             
-        };
-        _seriesRepository.Update(s);
+            };
+            _seriesRepository.Update(s);
+        }
     }
 
     public void Delete(int id)
@@ -112,8 +113,8 @@ public class SeriesService : ISeriesService
         return await _seriesRepository.SearchByNameAsync(name); 
     }
 
-    public async Task<IEnumerable<SeriesViewModel>> GetSeriesByGenreAsync(int genreID)
+    public async Task<IEnumerable<SeriesViewModel>> GetSeriesByGenreAsync(int genreId)
     {
-        return await _seriesRepository.GetSeriesByGenreAsync(genreID); 
+        return await _seriesRepository.GetSeriesByGenreAsync(genreId); 
     }
 }

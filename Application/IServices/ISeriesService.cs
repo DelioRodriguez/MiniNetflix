@@ -1,6 +1,6 @@
 ﻿using Application.ViewModel;
 using Data.Entities;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Application.IServices;
 
@@ -14,8 +14,8 @@ public interface ISeriesService
     Task<IEnumerable<SeriesViewModel>> GetAllSeriesAsync();
     Task<IEnumerable<SeriesViewModel>> GetSeriesByProducerAsync(int producerId);
     Task<IEnumerable<SeriesViewModel>> SearchByNameAsync(string name);
-    Task<IEnumerable<SeriesViewModel>> GetSeriesByGenreAsync(int genreID);
+    Task<IEnumerable<SeriesViewModel>> GetSeriesByGenreAsync(int genreId);
 
-    public Series GetSeriesById(int id);
+    public Series? GetSeriesById(int id);
 
 }
